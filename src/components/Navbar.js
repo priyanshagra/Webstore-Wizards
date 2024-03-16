@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect} from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import fashion from  './images/fashion.jpg';
+import fashion from "./images/fashion.jpg";
 
-const Navbar = () => {
-  let navigate = useNavigate();
+
+  const Navbar = (props) => {
+    let navigate = useNavigate();
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -14,13 +15,28 @@ const Navbar = () => {
     console.log(location);
   }, [location]);
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary" style={{ backgroundImage:`url(${fashion})`,backgroundRepeat:"no-repeat",
-    backgroundSize:1550,height:180}}>
-      <div className="container-fluid" >
-        <Link className="navbar-brand" to="/" style={{position:"absolute",left:500,top:0,fontFamily:"cursive",fontSize:100}}>
-          
-        </Link>
-        
+    <nav
+      className="navbar navbar-expand-lg bg-body-tertiary"
+      style={{
+        backgroundImage: `url(${fashion})`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: 1550,
+        height: 180,
+      }}
+    >
+      <div className="container-fluid">
+        <Link
+          className="navbar-brand"
+          to="/"
+          style={{
+            position: "absolute",
+            left: 500,
+            top: 0,
+            fontFamily: "cursive",
+            fontSize: 100,
+          }}
+        ></Link>
+
         <button
           className="navbar-toggler"
           type="button"
@@ -34,7 +50,7 @@ const Navbar = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item" style={{position:"absolute",top:0}}>
+            <li className="nav-item" style={{ position: "absolute", top: 0 }}>
               <Link
                 className={`nav-link ${
                   location.pathname === "/" ? "active" : ""
@@ -46,17 +62,23 @@ const Navbar = () => {
               </Link>
             </li>
 
-            <li className="nav-item" style={{position:"absolute",top:0,left:80}}>
+            <li
+              className="nav-item"
+              style={{ position: "absolute", top: 0, left: 80 }}
+            >
               <Link
                 className={`nav-link ${
                   location.pathname === "/about" ? "active" : ""
                 }`}
                 to="/about"
               >
-                About Us 
+                About Us
               </Link>
             </li>
-            <li className="nav-item" style={{position:"absolute",top:0,left:160}}>
+            <li
+              className="nav-item"
+              style={{ position: "absolute", top: 0, left: 160 }}
+            >
               <Link
                 className={`nav-link ${
                   location.pathname === "/faq" ? "active" : ""
@@ -67,28 +89,48 @@ const Navbar = () => {
               </Link>
             </li>
           </ul>
-          <li className="d-flex mx-2" style={{position:"absolute",bottom:0,left:80}}>
-            <Link className= "nav-link active " to="/yourorder">
+          <li
+            className="d-flex mx-2"
+            style={{ position: "absolute", bottom: 0, left: 80 }}
+          >
+            <Link className="nav-link active " to="/yourorder">
               <i className="fa-solid fa-cart-shopping">ORDERS</i>
             </Link>
           </li>
 
-          <li className="d-flex mx-2" style={{position:"absolute",bottom:0}}>
-            <Link className="nav-link active" to="/profile ">
-              <i className="fa-solid fa-user">USER</i>
+          <li
+            className="d-flex mx-2"
+            style={{ position: "absolute", bottom: 0 }}
+          >
+            <Link className="nav-link active" to="/yourcart">
+              <i className="fa-solid fa-user">CART</i>
             </Link>
           </li>
           {!localStorage.getItem("token") ? (
             <form className="d-flex">
-              <Link className="btn btn-primary mx-1" to="/login" role="button" style={{position:"absolute",top:0,right:80}}>
+              <Link
+                className="btn btn-primary mx-1"
+                to="/login"
+                role="button"
+                style={{ position: "absolute", top: 0, right: 80 }}
+              >
                 Login
               </Link>
-              <Link className="btn btn-primary mx-1" to="/signup" role="button" style={{position:"absolute",top:0,right:0}}>
+              <Link
+                className="btn btn-primary mx-1"
+                to="/emailforsignup"
+                role="button"
+                style={{ position: "absolute", top: 0, right: 0 }}
+              >
                 Signup
               </Link>
             </form>
           ) : (
-            <button className="btn btn-primary" onClick={handleLogout} style={{position:"absolute",top:0,right:0}}>
+            <button
+              className="btn btn-primary"
+              onClick={handleLogout}
+              style={{ position: "absolute", top: 0, right: 0 }}
+            >
               Logout
             </button>
           )}
@@ -96,6 +138,6 @@ const Navbar = () => {
       </div>
     </nav>
   );
-};
 
+}
 export default Navbar;

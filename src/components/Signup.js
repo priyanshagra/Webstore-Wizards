@@ -7,20 +7,18 @@ const Signup = (props) => {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const [credentials,setCredentials]=useState({name:"",email:"",password:"",cpassword:""})
+  const [credentials,setCredentials]=useState({name:"",password:"",cpassword:""})
   let navigate = useNavigate();
   const handleSubmit=async (e)=>{
       e.preventDefault();
       setIsLoading(true);
-      const {name,email,password}=credentials;
+      const {name,password}=credentials;
       const response=await fetch("https://trendytonebackend.onrender.com/api/auth/createuser",{
-          
           method:"POST",
           headers:{
               "Content-Type":"application/json"
-
           },
-          body: JSON.stringify({name,email,password})
+          body: JSON.stringify({name,password})
       });
       const json = await response.json();
       console.log(json);
@@ -34,6 +32,7 @@ const Signup = (props) => {
       else
       {
         props.showAlert("invalid details","danger");
+        navigate("/");
       }
   } 
   const onChange=(e)=>{
@@ -58,20 +57,6 @@ const Signup = (props) => {
             id="name" name="name" onChange={onChange} required  minLength={5}
             aria-describedby="emailHelp" 
           />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="email" className="form-label">
-           <strong>Email address</strong> 
-          </label>
-          <input
-            type="email"
-            className="form-control"
-            id="email" name="email" onChange={onChange} required 
-            aria-describedby="emailHelp"
-          />
-          <div id="emailHelp" className="form-text">
-            We'll never share your email with anyone else.
-          </div>
         </div>
         <div className="mb-3">
           <label htmlFor="password" className="form-label">

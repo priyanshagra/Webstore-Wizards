@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import orderContext from "../context/order/orderContext";
-import { orderTitle1 } from "./Kids";
+import { orderTitle1 } from "./Kids.js";
 import { orderTitle2 } from "./Women.js";
 import { orderTitle3 } from "./Men.js";
 
@@ -22,8 +22,16 @@ const Forms = (props) => {
   }
   else  {
     orderTitle=orderTitle3;   
-    console.log(orderTitle)  
   }
+  if(orderTitle==="")
+  {
+    orderTitle=orderTitle1; 
+  }
+  if(orderTitle==="")
+  {
+    orderTitle=orderTitle2; 
+  }
+  
   
 
 
@@ -33,22 +41,29 @@ const Forms = (props) => {
  const [put,putset]= useState({a:1,b:1})
  let {a,b}=put;
   
-  
-  
   let navigate = useNavigate();
   const context = useContext(orderContext);
-  const { addOrder } = context;
-
+  const {isLoadin,addCart} = context;
   const [order, setOrder] = useState({ title:orderTitle, primary_colour:"",secondary_colour:"",sleeve:"",collar:"",titletoshow:"",position:""});
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    addOrder(order.title , order.primary_colour , order.secondary_colour , order.sleeve , order.collar, order.titletoshow , order.position , order.size);
+    await addCart(order.title , order.primary_colour , order.secondary_colour , order.sleeve , order.collar, order.titletoshow , order.position , order.size);
     props.showAlert(
       "Congrutulation order bought successfully payment details will be sent on email!HAPPY SHOPPING",
       "success"
     );
     navigate("/");
+    await fetch(
+      "https://trendytonebackend.onrender.com/api/order/sendemailafterorder",
+      {
+        method: "POST",
+        headers: {
+          "auth-token":localStorage.getItem('token'),
+        }
+      }
+    )
+    
   };
   
 
@@ -399,9 +414,12 @@ const onclick9 =()=>{
         <button
           type="submit"
           className="btn btn-primary">
-          PROCEED TO BUY
+          ADD TO CART
         </button>
       </form>
+      <div>
+      {isLoadin ? <div>Loading...</div> : <div></div>}
+    </div>
     </div>
   );
 };
