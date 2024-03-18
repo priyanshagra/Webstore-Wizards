@@ -27,6 +27,7 @@ import Forgot from './components/Forgot';
 import Signup1 from './components/Signup1';
 import Getotp from './components/Getotp';
 import Yourcart from './components/Yourcart';
+import Cartitem from './components/Cartitem';
 
 function App() {
   const [alert,setAlert] = useState(null);
@@ -50,7 +51,7 @@ function App() {
          
         <Navbar element={<Navbar showAlert={showAlert}/>}/>
        <Alert alert={alert}/>
-        <div  style={{backgroundImage:`url(${backroundwallpaper})`,marginLeft:0,marginRight:0,paddingLeft:20,paddingRight:10,backgroundRepeat:"repeat",marginTop:0,marginBottom:0}}>
+        <div  >
           <Routes>
             <Route exact path="/" Component={Home} />
             <Route exact path="/about" Component={About}/>
@@ -68,6 +69,7 @@ function App() {
             <Route exact path="/forgotpassword" element={<Forgot showAlert={showAlert}/>}/>
             <Route exact path="/emailforsignup" element={<Signup1 showAlert={showAlert}/>}/>
             <Route exact path="/getotp" element={<Getotp showAlert={showAlert}/>}/>    
+            <Route exact path="/caritem" element={<Cartitem showAlert={showAlert}/>}/>    
           </Routes>
           <Footer/>
           </div>

@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import OrderContext from '../context/order/orderContext';
 import Orderitem from './Orderitem';
+import Cartitem from './Cartitem';
 
 const Yourcart = () => {
     let navigate = useNavigate();
@@ -26,7 +27,7 @@ const Yourcart = () => {
       {cart.length===0  &&  " Shoping start kardo"          }
         {cart.map(
             (carts)=>{
-                return <Orderitem orders = {carts} />
+                return <Cartitem orders = {carts} />
             }
         )
       }

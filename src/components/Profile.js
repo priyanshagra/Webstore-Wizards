@@ -12,7 +12,7 @@ const Profile = () => {
 
     const user= async()=>{
     const response = await fetch(
-      "https://trendytonebackend.onrender.com/api/auth/getuser",
+      "http://localhost:8000/api/auth/getuser",
       {
         method: "GET",
         headers: {

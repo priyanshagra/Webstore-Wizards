@@ -103,9 +103,18 @@ import fashion from "./images/fashion.jpg";
             style={{ position: "absolute", bottom: 0 }}
           >
             <Link className="nav-link active" to="/yourcart">
-              <i className="fa-solid fa-user">CART</i>
+            <i className="fa-solid fa-cart-shopping">CART</i>
             </Link>
           </li>
+          <li
+            className="d-flex mx-2"
+            style={{ position: "absolute", bottom: 0,left :180 }}
+          >
+            <Link className="nav-link active" to="/profile">
+              <i className="fa-solid fa-user"></i>
+            </Link>
+          </li>
+          
           {!localStorage.getItem("token") ? (
             <form className="d-flex">
               <Link

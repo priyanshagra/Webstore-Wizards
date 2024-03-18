@@ -11,6 +11,7 @@ const Login = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    console.log("hello")
     setIsLoading(true);
     const response = await fetch(
       "https://trendytonebackend.onrender.com/api/auth/login",
